@@ -1,0 +1,66 @@
+{
+  "user": {
+    "_id": {
+      "$oid": "5f53ec97002f23890010daf2"
+    },
+    "email": "anit.nilay20@gmail.com",
+    "password": "$argon2i$v=19$m=4096,t=3,p=1$NWY1M2VjOTcwMDJmMjM4OTAwMTBkYWYy$fZ9XvBvZomoen1uLp7Dv3zGd8xia/SSDY1xAzorhzQk",
+    "first_name": null,
+    "middle_name": null,
+    "last_name": null,
+    "last_login": null,
+    "permissions": null,
+    "groups": null,
+    "image": null,
+    "created_at": {
+      "$date": {
+        "$numberLong": "1599335575148"
+      }
+    },
+    "applications": [{
+      "$oid": "5f547b6100c5c29c0010daf7"
+    }],
+    "updated_at": {
+      "$date": {
+        "$numberLong": "1599372269348"
+      }
+    }
+  },
+  "application": {
+    "_id": {
+      "$oid": "5f547b6100c5c29c0010daf7"
+    },
+    "name": "Vouch",
+    "with_organization": false,
+    "created_at": {
+      "$date": {
+        "$numberLong": "1599372129433"
+      }
+    },
+    "updated_at": {
+      "$date": {
+        "$numberLong": "1599372129433"
+      }
+    }
+  },
+  "oranization": {
+    "_id": {
+      "$oid": "5f61a48c007d48160085ac7d"
+    },
+    "name": "SITS",
+    "address": null,
+    "contact": null,
+    "gst_code": null,
+    "gst_rate": null,
+    "hsn_code": null,
+    "amt_per_point_sale": null,
+    "amt_ready": null,
+    "users": [{
+      "$oid": "5f53ec97002f23890010daf2"
+    }],
+    "features": null,
+    "updated_at": {
+      "$date": "2020-09-16T05:37:16.251Z"
+    }
+  }
+}

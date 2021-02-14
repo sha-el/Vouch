@@ -1,0 +1,7 @@
+target/
+Dockerfile
+client
+vouch_lib/target
+vouch-admin/node_modules
+dist
+.git
