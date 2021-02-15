@@ -4,6 +4,7 @@ import { Card, Col, Row, CardMedia, TabPanelContainer, TabPanel } from 'sha-el-d
 
 import { Login } from './Login';
 import { Signup } from './SignUp';
+import { APP_ID } from '../../config';
 
 const tabs = [
   {
@@ -19,7 +20,7 @@ const tabs = [
 export const LoginSignup: React.FC<RouteComponentProps> = (props) => {
   const [activeTab, changeTab] = React.useState('login');
 
-  if (localStorage.user) {
+  if (localStorage.user && !APP_ID()) {
     location.href = '/dashboard';
   }
 

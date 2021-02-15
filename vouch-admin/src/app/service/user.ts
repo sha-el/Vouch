@@ -1,4 +1,4 @@
-import { client, LOGIN_URL, LOGOUT_URL, _client } from '../config';
+import { APP_ID, client, LOGIN_URL, LOGOUT_URL, _client } from '../config';
 import {
   AddGroupsToUserMutation,
   UpdateUserPermissionsMutation,
@@ -21,7 +21,7 @@ export async function login(email: string, password: string) {
     body: JSON.stringify({
       email,
       password,
-      application: new URLSearchParams(location.search).get('appId') || process.env.REACT_APP_APP_ID,
+      application: APP_ID() || process.env.REACT_APP_APP_ID,
     }),
   });
 }

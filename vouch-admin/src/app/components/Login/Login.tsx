@@ -47,6 +47,10 @@ export const Login: React.FunctionComponent<LoginProps> = (props) => {
     updateLoading(true);
     login(data)
       .then(() => {
+        const redirect = new URLSearchParams(location.search).get('redirect');
+        if (redirect) {
+          location.href = redirect;
+        }
         props.navigate?.('/dashboard');
         updateLoading(false);
       })

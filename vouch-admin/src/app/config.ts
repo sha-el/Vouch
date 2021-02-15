@@ -2,6 +2,8 @@ import { ApolloClient, InMemoryCache, createHttpLink, from } from '@apollo/clien
 import { onError } from '@apollo/client/link/error';
 import { notify } from 'sha-el-design/lib';
 
+export const APP_ID = () => new URLSearchParams(location.search).get('appId');
+
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach((v) => console.error(v));
@@ -28,6 +30,7 @@ export const _client = () =>
       createHttpLink({
         uri: process.env.AUTH_HOST || '/api/graphql',
         headers: { Token: sessionStorage.getItem('token') || localStorage.getItem('token') || '' },
+        credentials: 'include',
       }),
     ]),
     cache: new InMemoryCache(),

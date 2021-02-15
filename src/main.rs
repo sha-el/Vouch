@@ -36,7 +36,8 @@ async fn main() -> std::io::Result<()> {
                     .allow_any_header()
                     // .allowed_origin(&std::env::var("ALLOWED_ORIGIN").expect("Allowed origin not set"))
                     .allow_any_origin()
-                    .allow_any_method(),
+                    .allow_any_method()
+                    .supports_credentials(),
             )
             .wrap(IdentityService::new(
                 CookieIdentityPolicy::new(&[0; 32])
