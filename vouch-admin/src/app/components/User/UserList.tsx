@@ -58,13 +58,17 @@ export const UserList: React.FC<RouteComponentProps> = () => {
       >
         <FlexTable.Column header="Name" key="name" span={6}>
           {(col?: UserNode) => (
-            <Button primary link flat component={<Link to={col?.id || '#'} />}>
+            <>
               {col?.firstName} {col?.middleName} {col?.lastName}
-            </Button>
+            </>
           )}
         </FlexTable.Column>
         <FlexTable.Column header="Email" key="email" span={6}>
-          {(col?: UserNode) => col?.email}
+          {(col?: UserNode) => (
+            <Button primary link flat component={<Link to={col?.id || '#'} />}>
+              {col?.email}
+            </Button>
+          )}
         </FlexTable.Column>
         <FlexTable.Column header="Last Login" key="last login" span={3}>
           {(col?: UserNode) => (col?.lastLogin ? <TimeSince>{new Date(col?.lastLogin)}</TimeSince> : '-')}
