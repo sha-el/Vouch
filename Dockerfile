@@ -40,9 +40,11 @@ COPY . .
 COPY --from=cacher /app/target target
 COPY --from=cacher /usr/local/cargo /usr/local/cargo
 RUN cargo build --release --bin vouch
+RUN cargo build --release --bin vouch_cli
 
 FROM ubuntu:latest as runtime
 COPY --from=builder /app/target/release/vouch .
+COPY --from=builder /app/target/release/vouch_cli .
 RUN mkdir public
 COPY --from=react /app/build ./public/
 RUN chmod +x vouch

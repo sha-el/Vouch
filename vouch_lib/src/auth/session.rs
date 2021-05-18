@@ -31,7 +31,7 @@ impl Session {
         let mut session = Session {
             id: None,
             email,
-            exp: (Utc::now() + Duration::hours(12)).timestamp(),
+            exp: (Utc::now() + Duration::hours(1)).timestamp(),
             iat: Utc::now().timestamp(),
             aud,
             org,

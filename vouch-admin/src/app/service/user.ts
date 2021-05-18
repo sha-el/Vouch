@@ -26,7 +26,7 @@ export async function login(email: string, password: string) {
   });
 }
 
-export async function logout() {
+export async function logout(params: string) {
   localStorage.removeItem('token');
   sessionStorage.removeItem('token');
   localStorage.removeItem('user');
@@ -36,7 +36,7 @@ export async function logout() {
       'Content-Type': 'application/json',
     },
   });
-  return (location.href = '/');
+  return (location.href = `/${params}`);
 }
 
 export async function me() {

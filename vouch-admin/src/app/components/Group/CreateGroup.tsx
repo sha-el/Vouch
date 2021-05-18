@@ -100,13 +100,14 @@ export const CreateGroup: React.FC<CreateGroupsProps> = (props) => {
               )}
             />
           </Col>
-          <Col offset={15} span={4}>
+        </Row>
+        <Row justifyContent="flex-end" gutter={[0, '0 0 0 10px']}>
+          <Col flex="0 1 auto">
             <Button displayBlock type="danger" onClick={props.onCancel}>
               Cancel
             </Button>
           </Col>
-          <Col span={1} />
-          <Col span={4}>
+          <Col flex="0 1 auto">
             <Button displayBlock type="primary" loading={isLoading}>
               Submit
             </Button>

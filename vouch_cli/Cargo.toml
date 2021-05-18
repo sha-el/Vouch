@@ -1,0 +1,14 @@
+[package]
+name = "vouch_cli"
+version = "0.1.0"
+authors = ["Anit Nilay <anit.nilay20@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+vouch_lib = { path = "../vouch_lib", version = "0.1.0" }
+serde_json = "*"
+serde = "*"
+dotenv = "0.15.0"
+actix-rt = "1.1.1"

@@ -1,5 +1,5 @@
 {
-  "user": {
+  "user": [{
     "_id": {
       "$oid": "5f53ec97002f23890010daf2"
     },
@@ -8,42 +8,80 @@
     "first_name": null,
     "middle_name": null,
     "last_name": null,
-    "last_login": null,
+    "applications": [
+      {
+        "$oid": "5f547b6100c5c29c0010daf7"
+      },
+      {
+        "$oid": "5f57ab4192e6003f9973991f"
+      }
+    ],
+    "last_login": {
+      "$date": "2021-03-01T06:52:25.541Z"
+    },
+    "permissions": [
+      "SUPER_USER"
+    ],
+    "groups": null,
+    "image": null,
+    "default_organization": null,
+    "updated_at": {
+      "$date": "2020-09-06T06:04:29.348Z"
+    }
+  },{
+    "_id": {
+      "$oid": "5f61a5de000634cf0085ac7f"
+    },
+    "email": "anit.nilay@bazaarvoice.com",
+    "password": "$argon2i$v=19$m=4096,t=3,p=1$NWY2MWE1ZGUwMDA2MzRjZjAwODVhYzdm$CZWAj0fNSrGVNjaEABeUDMYb4Ywfd1I9TZmPqiOpthw",
+    "first_name": null,
+    "middle_name": null,
+    "last_name": null,
+    "applications": [
+      {
+        "$oid": "5f57ab4192e6003f9973991f"
+      }
+    ],
+    "last_login": {
+      "$date": "2020-09-16T05:45:30.478Z"
+    },
     "permissions": null,
     "groups": null,
     "image": null,
-    "created_at": {
-      "$date": {
-        "$numberLong": "1599335575148"
-      }
-    },
-    "applications": [{
-      "$oid": "5f547b6100c5c29c0010daf7"
-    }],
+    "default_organization": null,
     "updated_at": {
-      "$date": {
-        "$numberLong": "1599372269348"
-      }
+      "$date": "2020-09-16T05:42:54.172Z"
     }
-  },
-  "application": {
+  }],
+  "application": [{
     "_id": {
       "$oid": "5f547b6100c5c29c0010daf7"
     },
     "name": "Vouch",
     "with_organization": false,
     "created_at": {
-      "$date": {
-        "$numberLong": "1599372129433"
-      }
+      "$date": "2020-09-06T06:02:09.433Z"
     },
     "updated_at": {
-      "$date": {
-        "$numberLong": "1599372129433"
-      }
-    }
-  },
-  "oranization": {
+      "$date": "2020-09-06T06:02:09.433Z"
+    },
+    "features": [],
+    "permissions": [],
+    "redirect_url": ""
+  },{
+    "_id": {
+      "$oid": "5f57ab4192e6003f9973991f"
+    },
+    "name": "Morpheus",
+    "with_organization": true,
+    "updated_at": {
+      "$date": "2020-09-07T18:30:00Z"
+    },
+    "features": [],
+    "permissions": [],
+    "redirect_url": ""
+  }],
+  "organization": [{
     "_id": {
       "$oid": "5f61a48c007d48160085ac7d"
     },
@@ -55,12 +93,16 @@
     "hsn_code": null,
     "amt_per_point_sale": null,
     "amt_ready": null,
-    "users": [{
-      "$oid": "5f53ec97002f23890010daf2"
-    }],
-    "features": null,
+    "users": [
+      {
+        "$oid": "5f53ec97002f23890010daf2"
+      }
+    ],
+    "features": [
+      "ALL"
+    ],
     "updated_at": {
       "$date": "2020-09-16T05:37:16.251Z"
     }
-  }
+  }]
 }

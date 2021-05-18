@@ -7,7 +7,7 @@ pub enum ServiceError {
     #[display(fmt = "Internal Server Error")]
     InternalServerError,
 
-    #[display(fmt = "BadRequest: {}", _0)]
+    #[display(fmt = "{}", _0)]
     BadRequest(String),
 
     #[display(fmt = "Invalid Username or password")]

@@ -80,6 +80,9 @@ impl UserMutationInput {
 
     pub async fn save(self) -> FieldResult<UserNode> {
         let mut form = self.into_user().await?;
+        if form.id.is_none() {
+            form.clone().validate().await?;
+        }
         form.save(get_db().await?)
             .await
             .map_err(|e| Error(e.into()).extend())?;

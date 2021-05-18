@@ -43,13 +43,11 @@ async fn main() -> std::io::Result<()> {
                 CookieIdentityPolicy::new(&[0; 32])
                     .domain(std::env::var("DOMAIN").unwrap_or("localhost".to_string()))
                     .name("vouch-auth")
-                    .secure(if std::env::var("SECURE").unwrap_or("0".into()) == "1" {
-                        true
-                    } else {
-                        false
-                    })
+                    .secure(std::env::var("SECURE").unwrap_or("0".into()) == "1")
+                    .same_site(actix_web::cookie::SameSite::Lax)
                     .http_only(true)
-                    .path("/"),
+                    .path("/")
+                    .max_age(3600),
             ))
             .wrap(middleware::Logger::default())
             .service(graphql::graphql)

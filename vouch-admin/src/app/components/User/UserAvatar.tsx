@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { CardMedia } from 'sha-el-design';
 import { shadow } from 'sha-el-design/lib/helpers/style';
-import { ThemeConsumer } from 'sha-el-design/lib/components/Theme/Theme';
 import { getColor } from 'sha-el-design/lib/helpers';
+import { useTheme } from 'sha-el-design/lib/components/Theme/Theme';
 
 export type UserAvatarProps = {
   image?: string;
@@ -11,26 +11,23 @@ export type UserAvatarProps = {
 };
 
 export const UserAvatar: React.FC<UserAvatarProps> = (props) => {
+  const theme = useTheme();
   if (!props.image) {
     return (
-      <ThemeConsumer>
-        {(theme) => (
-          <div
-            style={{
-              ...(props.style || {}),
-              background: theme.secondary,
-              boxShadow: shadow('2X', theme),
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <h1 style={{ textAlign: 'center', color: getColor(theme.secondary) }}>
-              {props.email.slice(0, 2).toUpperCase()}
-            </h1>
-          </div>
-        )}
-      </ThemeConsumer>
+      <div
+        style={{
+          ...(props.style || {}),
+          background: theme.secondary,
+          boxShadow: shadow('2X', theme),
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <h1 style={{ textAlign: 'center', color: getColor(theme.secondary) }}>
+          {props.email.slice(0, 2).toUpperCase()}
+        </h1>
+      </div>
     );
   }
 

@@ -1,8 +1,13 @@
 use actix_identity::Identity;
-use actix_web::{HttpResponse, get, http::{StatusCode, header}, post, web};
+use actix_web::{
+    get,
+    http::{header, StatusCode, Cookie},
+    post, web, HttpResponse,
+};
 use async_graphql::http::{playground_source, GraphQLPlaygroundConfig};
 use async_graphql::{EmptySubscription, Schema};
 use async_graphql_actix_web::{Request, Response};
+use time::Duration;
 use serde::{Deserialize, Serialize};
 use vouch_lib::{
     auth::login as auth_login,
@@ -50,7 +55,7 @@ pub async fn graphql(
 pub async fn gql_playground() -> HttpResponse {
     HttpResponse::Ok()
         .content_type("text/html; charset=utf-8")
-        .body(playground_source(GraphQLPlaygroundConfig::new("/")))
+        .body(playground_source(GraphQLPlaygroundConfig::new("/api/graphql")))
 }
 
 #[post("/api/login")]
@@ -72,12 +77,15 @@ pub async fn login(id: Identity, item: web::Json<LoginInput>) -> Result<HttpResp
         .status(StatusCode::OK)
         .header(header::LOCATION, application.redirect_url)
         .finish()
-        .into_body()
-    )
+        .into_body())
 }
 
 #[post("/api/logout")]
 pub async fn logout(id: Identity) -> Result<HttpResponse, Error> {
-    id.forget();
-    Ok(HttpResponse::Ok().status(StatusCode::OK).finish().into_body())
+    id.remember("value".to_string());
+
+    Ok(HttpResponse::PermanentRedirect()
+        .status(StatusCode::OK)
+        .finish()
+        .into_body())
 }

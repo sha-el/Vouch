@@ -117,17 +117,17 @@ export const Login: React.FunctionComponent<LoginProps> = (props) => {
             </Col>
           </Row>
           <Row>
-            <Button displayBlock type="primary" loading={isLoading}>
+            <Button displayBlock type="submit" primary loading={isLoading}>
               Submit
             </Button>
           </Row>
         </form>
         <Divider color="#6870a0" />
         <ButtonGroup>
-          <Button style={{ width: '50%' }} flat type="secondary">
+          <Button style={{ width: '50%' }} flat secondary>
             Forget Password
           </Button>
-          <Button style={{ width: '50%' }} flat type="primary" onClick={onTabChange}>
+          <Button style={{ width: '50%' }} flat primary onClick={onTabChange}>
             Sign up
           </Button>
         </ButtonGroup>

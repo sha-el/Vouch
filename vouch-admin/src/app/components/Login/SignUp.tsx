@@ -12,14 +12,10 @@ export type SignUpProps = {
 
 export const Signup: React.FC<SignUpProps> = (props) => {
   const { onTabChange } = props;
-  const { handleSubmit, errors, control, setError } = useForm<SignUpMutation>();
+  const { handleSubmit, errors, control, setError, getValues } = useForm<SignUpMutation>();
+  console.log(errors);
 
   const onSubmit = (data: SignUpMutation) => {
-    if (data.password !== data.password2) {
-      setError('password2', { message: 'Error mismatch' });
-      return;
-    }
-
     signUp(
       {
         email: data.email,
@@ -37,6 +33,9 @@ export const Signup: React.FC<SignUpProps> = (props) => {
           });
           return;
         }
+        const error = v.errors?.map((e) => e.message).join(',');
+        error?.toLowerCase().includes('email already exists') &&
+          setError('email', { message: 'Email already exists', type: 'validate' });
 
         notify({
           title: v.errors?.map((e) => e.message).join(','),
@@ -57,17 +56,7 @@ export const Signup: React.FC<SignUpProps> = (props) => {
 
   return (
     <>
-      <CardHeader
-        subtitle={
-          <>
-            <span>Enter your personal details</span>
-            <br />
-            <span>and start journey with {APP_NAME}</span>
-          </>
-        }
-      >
-        Hello Traveler
-      </CardHeader>
+      <CardHeader subtitle="Adventure starts here 🚀">Hello Traveler 👋</CardHeader>
       <CardBody>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Row gutter={[0, '10px 0']}>
@@ -84,7 +73,7 @@ export const Signup: React.FC<SignUpProps> = (props) => {
                     before={<RiUser3Line />}
                     value={value}
                     onChange={({ target: { value } }) => onChange(value)}
-                    error={errors.email}
+                    error={errors.email?.message}
                   />
                 )}
               />
@@ -102,7 +91,7 @@ export const Signup: React.FC<SignUpProps> = (props) => {
                     before={<RiLockPasswordLine />}
                     value={value}
                     onChange={({ target: { value } }) => onChange(value)}
-                    error={errors.password}
+                    error={errors.password?.message}
                     onBlur={onBlur}
                   />
                 )}
@@ -110,7 +99,10 @@ export const Signup: React.FC<SignUpProps> = (props) => {
             </Col>
             <Col>
               <Controller
-                rules={{ required: 'Please confirm Password' }}
+                rules={{
+                  required: 'Please confirm Password',
+                  validate: (value) => (getValues('password') === value ? true : 'Password mismatch'),
+                }}
                 control={control}
                 name="password2"
                 render={({ onChange, value, onBlur }) => (
@@ -121,7 +113,7 @@ export const Signup: React.FC<SignUpProps> = (props) => {
                     before={<RiLockPasswordLine />}
                     value={value}
                     onChange={({ target: { value } }) => onChange(value)}
-                    error={errors.password}
+                    error={errors.password2?.message}
                     onBlur={onBlur}
                   />
                 )}
@@ -129,12 +121,12 @@ export const Signup: React.FC<SignUpProps> = (props) => {
             </Col>
           </Row>
           <Row>
-            <Button displayBlock type="primary">
+            <Button displayBlock type="submit" primary>
               Submit
             </Button>
           </Row>
           <Divider color="#6870a0" />
-          <Button displayBlock flat type="secondary" onClick={onTabChange}>
+          <Button displayBlock flat secondary onClick={onTabChange}>
             Already has a account? Login
           </Button>
         </form>

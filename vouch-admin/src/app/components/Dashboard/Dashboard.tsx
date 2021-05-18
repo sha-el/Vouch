@@ -25,7 +25,7 @@ export const Dashboard: React.FC<RouteComponentProps> = () => {
       <SidePanel
         bottom={
           <Tooltip overlay="Logout">
-            <Button flat displayBlock size="big" onClick={logout} icon={<RiLogoutBoxFill />} />
+            <Button flat displayBlock size="big" onClick={() => logout('')} icon={<RiLogoutBoxFill />} />
           </Tooltip>
         }
         logo={<SiAuthy size="50px" style={{ background: 'var(--primary)' }} />}
