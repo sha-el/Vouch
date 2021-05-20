@@ -101,12 +101,10 @@ impl OrganizationEdge {
     }
 
     pub async fn count(&self) -> FieldResult<i64> {
-        Ok(Organization::count(
-            get_db().await?,
-            Some(self.filters()),
-            None,
+        Ok(
+            Organization::count(get_db().await?, Some(self.filters()), None)
+                .await
+                .map_err(|e| Error(e.into()).extend())?,
         )
-        .await
-        .map_err(|e| Error(e.into()).extend())?)
     }
 }

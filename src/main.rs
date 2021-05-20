@@ -2,7 +2,7 @@ use actix_cors::Cors;
 use actix_files as fs;
 use actix_identity::{CookieIdentityPolicy, IdentityService};
 use actix_rt;
-use actix_web::{middleware, App, HttpServer, web, Result};
+use actix_web::{middleware, web, App, HttpServer, Result};
 use async_graphql::{EmptySubscription, Schema};
 
 pub mod graphql;
@@ -55,10 +55,7 @@ async fn main() -> std::io::Result<()> {
             .service(graphql::login)
             .service(graphql::logout)
             .service(fs::Files::new("/static", "./public/static").show_files_listing())
-            .default_service(
-                web::resource("")
-                    .route(web::get().to(frontend_index))
-            )
+            .default_service(web::resource("").route(web::get().to(frontend_index)))
     })
     .bind(&format!("{}:{}", host, port))?
     .workers(workers)

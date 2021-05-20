@@ -3,7 +3,7 @@ use chrono::{DateTime, Utc};
 use vouch_lib::{
     application::Application,
     beatrix::{
-        bson::{doc, oid::ObjectId, Regex, Document},
+        bson::{doc, oid::ObjectId, Document, Regex},
         mongo::MongoModel,
         mongodb::options::FindOptions,
     },
@@ -95,12 +95,10 @@ impl ApplicationEdge {
     }
 
     pub async fn count(&self) -> FieldResult<i64> {
-        Ok(Application::count(
-            get_db().await?,
-            Some(self.filters()),
-            None,
+        Ok(
+            Application::count(get_db().await?, Some(self.filters()), None)
+                .await
+                .map_err(|e| Error(e.into()).extend())?,
         )
-        .await
-        .map_err(|e| Error(e.into()).extend())?)
     }
 }

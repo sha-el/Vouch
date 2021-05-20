@@ -1,6 +1,4 @@
-use beatrix::{
-    mongodb::{options::ClientOptions, Client, Collection, Database},
-};
+use beatrix::mongodb::{options::ClientOptions, Client, Collection, Database};
 
 use crate::error::ServiceError;
 
