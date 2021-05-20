@@ -34,8 +34,7 @@ pub async fn login(
 }
 
 async fn find_user(email: &str) -> Result<User, ServiceError> {
-    let user = User::find(get_db().await?, Some(doc! { "email": email }), None)
-        .await?;
+    let user = User::find(get_db().await?, Some(doc! { "email": email }), None).await?;
 
     match user {
         None => Err(ServiceError::InvalidCredentials),

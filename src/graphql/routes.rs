@@ -1,13 +1,12 @@
 use actix_identity::Identity;
 use actix_web::{
     get,
-    http::{header, StatusCode, Cookie},
+    http::{header, StatusCode},
     post, web, HttpResponse,
 };
 use async_graphql::http::{playground_source, GraphQLPlaygroundConfig};
 use async_graphql::{EmptySubscription, Schema};
 use async_graphql_actix_web::{Request, Response};
-use time::Duration;
 use serde::{Deserialize, Serialize};
 use vouch_lib::{
     auth::login as auth_login,
@@ -55,7 +54,9 @@ pub async fn graphql(
 pub async fn gql_playground() -> HttpResponse {
     HttpResponse::Ok()
         .content_type("text/html; charset=utf-8")
-        .body(playground_source(GraphQLPlaygroundConfig::new("/api/graphql")))
+        .body(playground_source(GraphQLPlaygroundConfig::new(
+            "/api/graphql",
+        )))
 }
 
 #[post("/api/login")]

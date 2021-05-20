@@ -1,5 +1,8 @@
-use vouch_lib::{user::User, application::Application, organization::Organization, beatrix::mongo::MongoModel, db::get_db};
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
+use vouch_lib::{
+    application::Application, beatrix::mongo::MongoModel, db::get_db, organization::Organization,
+    user::User,
+};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 struct Fixtures {

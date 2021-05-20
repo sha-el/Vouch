@@ -2,7 +2,7 @@ use async_graphql::{Error as AGError, ErrorExtensions, FieldError};
 use derive_more::Display;
 use vouch_lib::error::ServiceError;
 
-use actix_web::{ResponseError, HttpResponse};
+use actix_web::{HttpResponse, ResponseError};
 
 #[derive(Debug, Display, PartialEq, Eq)]
 pub struct Error(pub ServiceError);
