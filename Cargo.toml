@@ -7,7 +7,7 @@ default-run = "vouch"
 
 [[bin]]
 name = "vouch-cli"
-path = "./vouch-cli/src/main.rs"
+path = "./vouch_cli/src/main.rs"
 
 [dependencies]
 vouch_lib = { path = "vouch_lib", version = "0.1.0" }
